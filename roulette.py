@@ -17,8 +17,27 @@ def check_result(player_num,ball_num):
     else:
         return "Lost"
 
-number = int(input("Choose a number: "))
+balance = 100
+try:
+    number = int(input("Choose a number Between 0 - 32: "))
+except ValueError:
+    print("That wasn't a number!")
+    number = -1
+
+while number not in range(0,33):
+    print("Invalid Number")
+    number = int(input("Choose a number Between 0 - 32: "))
+print(f"Number:{number} picked")
+
+
+bet = (int(input(f"Remaining Balance:{balance}  Choose Bet Size, ")))
+while bet < 1 or bet > balance:
+    print("Invalid bet!")
+    bet = int(input(f"Enter a bet between $1 and ${balance}: "))
+print(f"Bet accepted: ${bet}")
+
+
 ball_result = spin()
 
-print(check_result(number,ball_result))
+print(check_result(number,ball_result) + " " + str(balance))
 
